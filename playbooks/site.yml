@@ -1,0 +1,9 @@
+- name: Setup DB
+  hosts: db
+  roles:
+    - postgres
+
+- name: Setup App
+  hosts: app
+  roles:
+    - nodejs
