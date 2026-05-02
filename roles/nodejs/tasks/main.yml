@@ -21,6 +21,6 @@
     chdir: /opt/app
 
 - name: Start app
-  shell: "DB_HOST={{ hostvars[groups['db'][0]].ansible_host }} node server.js &"
+  shell: "DB_HOST={{ hostvars[groups['db'][0]].ansible_host }} nohup node server.js > app.log 2>&1 &"
   args:
     chdir: /opt/app
