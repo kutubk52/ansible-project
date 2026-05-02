@@ -16,7 +16,8 @@ pipeline {
         stage('Run Ansible') {
             steps {
                 sh '''
-                cd ansible-project
+                pwd
+		ls -l
                 ansible-playbook -i inventory/hosts.ini playbooks/site.yml
                 '''
             }
