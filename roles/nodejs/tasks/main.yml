@@ -20,7 +20,16 @@
   args:
     chdir: /opt/app
 
-- name: Start app
-  shell: "DB_HOST={{ hostvars[groups['db'][0]].ansible_host }} nohup node server.js > app.log 2>&1 &"
-  args:
-    chdir: /opt/app
+- name: Copy systemd service
+  template:
+    src: app.service.j2
+    dest: /etc/systemd/system/app.service
+
+- name: Reload systemd
+  command: systemctl daemon-reload
+
+- name: Ensure app service is running
+  service:
+    name: app
+    state: restarted
+    enabled: true

@@ -1,0 +1,12 @@
+[Unit]
+Description=Node App
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /opt/app/server.js
+Restart=always
+Environment=DB_HOST={{ hostvars[groups['db'][0]].ansible_host }}
+User=ansible
+
+[Install]
+WantedBy=multi-user.target
