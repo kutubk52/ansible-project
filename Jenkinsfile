@@ -12,7 +12,13 @@ pipeline {
                     url: 'https://github.com/kutubk52/ansible-project.git'
             }
         }
-
+	stage('Install Ansible Collections') {
+            steps {
+                sh '''
+                ansible-galaxy collection install -r requirements.yml
+                '''
+            }
+        }
         stage('Run Ansible') {
             steps {
                 sh '''
